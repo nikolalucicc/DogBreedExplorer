@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home_fragment">
+
+    <fragment
+        android:id="@+id/search_fragment"
+        android:name="com.dogbreedexplorer.search_fragment"
+        android:label="fragment_search_fragment"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_search_fragment_to_home_fragment"
+            app:destination="@id/home_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="com.dogbreedexplorer.home_fragment"
+        android:label="fragment_home_fragment"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_fragment_to_search_fragment"
+            app:destination="@id/search_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_liked_fragment"
+            app:destination="@id/liked_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/liked_fragment"
+        android:name="com.dogbreedexplorer.liked_fragment"
+        android:label="fragment_liked_fragment"
+        tools:layout="@layout/fragment_liked" >
+        <action
+            android:id="@+id/action_liked_fragment_to_home_fragment"
+            app:destination="@id/home_fragment" />
+    </fragment>
+</navigation>

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.activity.ComponentActivity
-import com.dogbreedexplorer.MainActivity
 import com.dogbreedexplorer.R
 
 class SplashScreenActivity : ComponentActivity() {
