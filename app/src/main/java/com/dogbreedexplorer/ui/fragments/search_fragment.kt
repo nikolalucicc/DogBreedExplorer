@@ -1,10 +1,11 @@
-package com.dogbreedexplorer
+package com.dogbreedexplorer.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.dogbreedexplorer.R
 
 class search_fragment : Fragment() {
 
