@@ -31,10 +31,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:nestedScrollingEnabled="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:itemCount="4"
+            android:nestedScrollingEnabled="true"
             tools:listitem="@layout/card_item" />
 
     </ScrollView>
