@@ -30,7 +30,7 @@
             android:layout_height="50dp"
             android:layout_gravity="end"
             android:src="@drawable/baseline_search_24"
-            android:background="@color/white"
+            android:background="@null"
             app:layout_constraintEnd_toStartOf="@id/liked"
             tools:ignore="MissingConstraints" />
 
@@ -40,7 +40,7 @@
             android:layout_height="50dp"
             android:layout_gravity="end"
             android:src="@drawable/baseline_favorite_24"
-            android:background="@color/white"
+            android:background="@null"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints" />
 
