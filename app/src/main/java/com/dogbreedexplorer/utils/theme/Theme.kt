@@ -1,4 +1,4 @@
-package com.dogbreedexplorer.ui.theme
+package com.dogbreedexplorer.utils.theme
 
 import android.app.Activity
 import android.os.Build

@@ -1,4 +1,4 @@
-package com.dogbreedexplorer.ui.theme
+package com.dogbreedexplorer.utils.theme
 
 import androidx.compose.ui.graphics.Color
 

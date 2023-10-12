@@ -1,4 +1,4 @@
-package com.dogbreedexplorer.utils.network
+package com.dogbreedexplorer.network
 
 import retrofit2.Call
 import com.dogbreedexplorer.ui.model.Breed

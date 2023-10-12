@@ -1,4 +1,4 @@
-package com.dogbreedexplorer.ui.fragments
+package com.dogbreedexplorer.ui.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.dogbreedexplorer.R
 
-class search_fragment : Fragment() {
+class SearchFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

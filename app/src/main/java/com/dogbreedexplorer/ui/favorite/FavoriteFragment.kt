@@ -1,4 +1,4 @@
-package com.dogbreedexplorer.ui.fragments
+package com.dogbreedexplorer.ui.favorite
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.dogbreedexplorer.R
 
-class liked_fragment : Fragment() {
+class FavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

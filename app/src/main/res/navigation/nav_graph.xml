@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/home_fragment">
+    app:startDestination="@id/breeds_fragment">
 
     <fragment
         android:id="@+id/search_fragment"
-        android:name="com.dogbreedexplorer.ui.fragments.search_fragment"
+        android:name="com.dogbreedexplorer.ui.search.SearchFragment"
         android:label="fragment_search_fragment"
         tools:layout="@layout/fragment_search" >
         <action
             android:id="@+id/action_search_fragment_to_home_fragment"
-            app:destination="@id/home_fragment" />
+            app:destination="@id/breeds_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/home_fragment"
-        android:name="com.dogbreedexplorer.ui.fragments.home_fragment"
+        android:id="@+id/breeds_fragment"
+        android:name="com.dogbreedexplorer.ui.breeds.BreedsFragment"
         android:label="fragment_home_fragment"
         tools:layout="@layout/fragment_home" >
         <action
@@ -24,15 +24,15 @@
             app:destination="@id/search_fragment" />
         <action
             android:id="@+id/action_home_fragment_to_liked_fragment"
-            app:destination="@id/liked_fragment" />
+            app:destination="@id/favorite_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/liked_fragment"
-        android:name="com.dogbreedexplorer.ui.fragments.liked_fragment"
+        android:id="@+id/favorite_fragment"
+        android:name="com.dogbreedexplorer.ui.favorite.FavoriteFragment"
         android:label="fragment_liked_fragment"
-        tools:layout="@layout/fragment_liked" >
+        tools:layout="@layout/fragment_liked">
         <action
             android:id="@+id/action_liked_fragment_to_home_fragment"
-            app:destination="@id/home_fragment" />
+            app:destination="@id/breeds_fragment" />
     </fragment>
 </navigation>

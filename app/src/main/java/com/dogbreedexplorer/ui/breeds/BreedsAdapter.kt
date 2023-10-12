@@ -1,4 +1,4 @@
-package com.dogbreedexplorer.ui.activities
+package com.dogbreedexplorer.ui.breeds
 
 import android.app.Activity
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
 import com.dogbreedexplorer.ui.model.Breed
 
-class FeedAdapter(val activity: Activity) : RecyclerView.Adapter<FeedAdapter.FeedViewHolder>() {
+class BreedsAdapter(val activity: Activity) : RecyclerView.Adapter<BreedsAdapter.FeedViewHolder>() {
 
     private var breedList: List<Breed>? = null
 
@@ -23,7 +23,7 @@ class FeedAdapter(val activity: Activity) : RecyclerView.Adapter<FeedAdapter.Fee
         return FeedViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FeedAdapter.FeedViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
         holder.bind(breedList?.get(position)!!, activity)
     }
 
