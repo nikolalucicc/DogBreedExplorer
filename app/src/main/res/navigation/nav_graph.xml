@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_home_fragment_to_liked_fragment"
             app:destination="@id/favorite_fragment" />
+        <action
+            android:id="@+id/action_breeds_fragment_to_breedDetailsFragment"
+            app:destination="@id/breedDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favorite_fragment"
@@ -33,6 +36,15 @@
         tools:layout="@layout/fragment_liked">
         <action
             android:id="@+id/action_liked_fragment_to_home_fragment"
+            app:destination="@id/breeds_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/breedDetailsFragment"
+        android:name="com.dogbreedexplorer.ui.breedDetails.BreedDetailsFragment"
+        android:label="fragment_breed_details"
+        tools:layout="@layout/fragment_breed_details" >
+        <action
+            android:id="@+id/action_breedDetailsFragment_to_breeds_fragment"
             app:destination="@id/breeds_fragment" />
     </fragment>
 </navigation>

@@ -1,12 +1,16 @@
 package com.dogbreedexplorer.ui.breeds
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
+import com.dogbreedexplorer.ui.breedDetails.BreedDetailsFragment
 import com.dogbreedexplorer.ui.model.Breed
 
 class BreedsAdapter(val activity: Activity) : RecyclerView.Adapter<BreedsAdapter.FeedViewHolder>() {
@@ -23,8 +27,29 @@ class BreedsAdapter(val activity: Activity) : RecyclerView.Adapter<BreedsAdapter
         return FeedViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FeedViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FeedViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(breedList?.get(position)!!, activity)
+
+        holder.itemView.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val item: Breed = breedList!![position]
+                val id = item.id
+                val activity = v!!.context as AppCompatActivity
+
+                // Kreirajte instancu fragmenta pomoću newInstance metode
+                val idInt = item.id?.toIntOrNull() ?: -1
+                val details = BreedDetailsFragment.newInstance(idInt)
+
+                if (details != null) {
+                    activity.supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment, details)
+                        .addToBackStack(null)
+                        .commit()
+                }
+
+                Toast.makeText(activity, item.id.toString(), Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun getItemCount(): Int {
