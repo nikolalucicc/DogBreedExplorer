@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:layout_margin="6dp">
 
         <TextView
             android:id="@+id/tvBreedName"
@@ -123,43 +123,43 @@
             android:textSize="16sp"
             tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/tvHeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Height: "
-            android:textStyle="bold"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints"
-            app:layout_constraintTop_toBottomOf="@+id/tvTemperament"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tvHeight"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Height: "-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="16sp"-->
+<!--            tools:ignore="MissingConstraints"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tvTemperament"/>-->
 
-        <TextView
-            android:id="@+id/tvHeightDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/tvHeight"
-            app:layout_constraintTop_toBottomOf="@id/tvTemperament"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:id="@+id/tvHeightDetails"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toEndOf="@id/tvHeight"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tvTemperament"-->
+<!--            android:textSize="16sp"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
-        <TextView
-            android:id="@+id/tvWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Weight: "
-            android:textStyle="bold"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints"
-            app:layout_constraintTop_toBottomOf="@+id/tvHeight"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tvWeight"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Weight: "-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="16sp"-->
+<!--            tools:ignore="MissingConstraints"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tvHeight"/>-->
 
-        <TextView
-            android:id="@+id/tvWeightDetails"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/tvWeight"
-            app:layout_constraintTop_toBottomOf="@id/tvHeight"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+<!--        <TextView-->
+<!--            android:id="@+id/tvWeightDetails"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintStart_toEndOf="@id/tvWeight"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tvHeight"-->
+<!--            android:textSize="16sp"-->
+<!--            tools:ignore="MissingConstraints" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
 
 class BreedsFragment : Fragment() {
     private lateinit var adapter: BreedsAdapter
@@ -21,6 +24,12 @@ class BreedsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_home, container, false)
+
+        val appBarLayout = view.findViewById<CollapsingToolbarLayout>(R.id.appBarLayout)
+        val params = appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
+        params.anchorGravity = 0 // Postavite da bude sklizak
+        appBarLayout.layoutParams = params
+
         val buttonSearch = view.findViewById<ImageButton>(R.id.search)
         buttonSearch.setOnClickListener{
             findNavController().navigate(R.id.action_home_fragment_to_search_fragment)

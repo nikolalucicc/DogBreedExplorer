@@ -33,7 +33,6 @@ class BreedsAdapter(val activity: Activity) : RecyclerView.Adapter<BreedsAdapter
         holder.itemView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val item: Breed = breedList!![position]
-                val id = item.id
                 val activity = v!!.context as AppCompatActivity
 
                 // Kreirajte instancu fragmenta pomoću newInstance metode
@@ -47,7 +46,6 @@ class BreedsAdapter(val activity: Activity) : RecyclerView.Adapter<BreedsAdapter
                         .commit()
                 }
 
-                Toast.makeText(activity, item.id.toString(), Toast.LENGTH_SHORT).show()
             }
         })
     }

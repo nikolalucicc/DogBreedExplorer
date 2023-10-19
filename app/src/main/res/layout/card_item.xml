@@ -33,7 +33,8 @@
                 tools:ignore="MissingConstraints"
                 tools:text="Naziv rase"
                 app:layout_constraintStart_toStartOf="parent"
-                android:textSize="16dp"/>
+                android:textSize="16dp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tvOrigin"
@@ -42,7 +43,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvBreed"
                 tools:text="Poreklo"
-                android:textSize="14dp"/>
+                android:textSize="14dp" />
 
             <ImageButton
                 android:id="@+id/liked"

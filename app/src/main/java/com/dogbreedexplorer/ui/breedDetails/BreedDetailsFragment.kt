@@ -16,6 +16,18 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
 
     private lateinit var name: TextView
     private lateinit var origin: TextView
+    private lateinit var breed_for: TextView
+    private lateinit var breed_group: TextView
+    private lateinit var life_span: TextView
+    private lateinit var temperament: TextView
+
+    private lateinit var tvName: TextView
+    private lateinit var tvOrigin: TextView
+    private lateinit var tvBreed_for: TextView
+    private lateinit var tvBreed_group: TextView
+    private lateinit var tvLife_span: TextView
+    private lateinit var tvTemperament: TextView
+
     private var id: Int = -1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -23,6 +35,17 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
 
         name = view.findViewById(R.id.tvBreedNameDetails)
         origin = view.findViewById(R.id.tvBreedOriginDetails)
+        breed_for = view.findViewById(R.id.tvBreedForDetails)
+        breed_group = view.findViewById(R.id.tvBreedGroupDetails)
+        life_span = view.findViewById(R.id.tvLifeSpanDetails)
+        temperament = view.findViewById(R.id.tvTemperamentDetails)
+
+        tvName = view.findViewById(R.id.tvBreedName)
+        tvOrigin = view.findViewById(R.id.tvOrigin)
+        tvBreed_for = view.findViewById(R.id.tvBreedFor)
+        tvBreed_group = view.findViewById(R.id.tvBreedGroup)
+        tvLife_span = view.findViewById(R.id.tvLifeSpan)
+        tvTemperament = view.findViewById(R.id.tvTemperament)
 
         // Pročitajte id rase iz argumenta fragmenta, ako je dostupan
         arguments?.let {
@@ -48,7 +71,19 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
             if (breedDetails != null) {
                 name.text = breedDetails.name
                 origin.text = breedDetails.origin
+                breed_for.text = breedDetails.breed_for
+                breed_group.text = breedDetails.breed_group
+                life_span.text = breedDetails.life_span
+                temperament.text = breedDetails.temperament
+
+                tvName.visibility = if (breedDetails.name != null) View.VISIBLE else View.GONE
+                tvOrigin.visibility = if (breedDetails.origin != null) View.VISIBLE else View.GONE
+                tvBreed_for.visibility = if (breedDetails.breed_for != null) View.VISIBLE else View.GONE
+                tvBreed_group.visibility = if (breedDetails.breed_group != null) View.VISIBLE else View.GONE
+                tvLife_span.visibility = if (breedDetails.life_span != null) View.VISIBLE else View.GONE
+                tvTemperament.visibility = if (breedDetails.temperament != null) View.VISIBLE else View.GONE
             } else {
+
                 Toast.makeText(requireContext(), "Error getting details", Toast.LENGTH_LONG).show()
             }
         })
