@@ -4,13 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dogbreedexplorer.network.Api
-import com.dogbreedexplorer.network.RetrofitInstance
+import androidx.lifecycle.viewModelScope
+import com.dogbreedexplorer.repository.remote.BreedRepository
 import com.dogbreedexplorer.ui.model.Breed
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 
-class DetailsViewModel : ViewModel() {
+class DetailsViewModel(private val repo: BreedRepository) : ViewModel() {
 
     var data: MutableLiveData<Breed> = MutableLiveData()
 
@@ -19,20 +20,9 @@ class DetailsViewModel : ViewModel() {
     }
 
     fun getDetails(id: Int){
-        val instance = RetrofitInstance.retrofit()
-        val service = instance.create(Api::class.java)
-        val call = service.getDetailsForBreed(id)
-        call.enqueue(object : retrofit2.Callback<Breed> {
-            override fun onResponse(call: Call<Breed>, response: Response<Breed>) {
-                if(response.isSuccessful){
-                    data.postValue(response.body())
-                }
-            }
-
-            override fun onFailure(call: Call<Breed>, t: Throwable) {
-                t.message?.let { Log.d("nikola", it) };
-            }
-
-        })
+        viewModelScope.launch {
+            val response = repo.getDetailsForBreed(id)
+            data.postValue(response.body())
+        }
     }
 }

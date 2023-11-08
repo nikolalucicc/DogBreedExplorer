@@ -19,12 +19,8 @@ class MainViewModel(private val repo: BreedRepository): ViewModel() {
 
     fun getAllBreeds() {
         viewModelScope.launch {
-            try {
-                val response = repo.getAllBreeds()
-                data.postValue(response.body())
-            } catch (e: Exception) {
-                e.message?.let { Log.d("nikola", it) }
-            }
+            val response = repo.getAllBreeds()
+            data.postValue(response.body())
         }
     }
 

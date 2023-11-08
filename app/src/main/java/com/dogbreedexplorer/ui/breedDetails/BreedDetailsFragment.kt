@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.dogbreedexplorer.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class BreedDetailsFragment(id: Int?) : Fragment() {
@@ -30,6 +31,8 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
 
     private var id: Int = -1
 
+    val viewModel: DetailsViewModel by viewModel()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_breed_details, container, false)
 
@@ -47,7 +50,6 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
         tvLife_span = view.findViewById(R.id.tvLifeSpan)
         tvTemperament = view.findViewById(R.id.tvTemperament)
 
-        // Pročitajte id rase iz argumenta fragmenta, ako je dostupan
         arguments?.let {
             id = it.getInt(ARG_BREED_ID, -1)
         }
@@ -66,7 +68,6 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
     }
 
     private fun loadDetails(id: Int) {
-        val viewModel: DetailsViewModel = ViewModelProvider(this).get(DetailsViewModel::class.java)
         viewModel.getDataObserver().observe(viewLifecycleOwner, Observer { breedDetails ->
             if (breedDetails != null) {
                 name.text = breedDetails.name

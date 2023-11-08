@@ -12,5 +12,5 @@ interface Api {
     @GET("v1/breeds")
     suspend fun getAllBreeds(): Response<List<Breed>>
     @GET("v1/breeds/{id}")
-    fun getDetailsForBreed(@Path("id") id: Int): Call<Breed>
+    suspend fun getDetailsForBreed(@Path("id") id: Int): Response<Breed>
 }
