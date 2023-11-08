@@ -3,14 +3,13 @@ package com.dogbreedexplorer.ui.breeds
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dogbreedexplorer.ui.model.Breed
-import com.dogbreedexplorer.network.Api
-import com.dogbreedexplorer.network.RetrofitInstance
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.dogbreedexplorer.repository.remote.BreedRepository
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
-class MainViewModel: ViewModel() {
+class MainViewModel(private val repo: BreedRepository): ViewModel() {
 
     var data: MutableLiveData<List<Breed>> = MutableLiveData()
 
@@ -18,20 +17,15 @@ class MainViewModel: ViewModel() {
         return data
     }
 
-    fun getAllBreeds(){
-        val instance = RetrofitInstance.retrofit()
-        val service = instance.create(Api::class.java)
-        val call = service.getAllBreeds()
-        call.enqueue(object : Callback<List<Breed>> {
-            override fun onResponse(call: Call<List<Breed>>, response: Response<List<Breed>>) {
+    fun getAllBreeds() {
+        viewModelScope.launch {
+            try {
+                val response = repo.getAllBreeds()
                 data.postValue(response.body())
+            } catch (e: Exception) {
+                e.message?.let { Log.d("nikola", it) }
             }
-
-            override fun onFailure(call: Call<List<Breed>>, t: Throwable) {
-                t.message?.let { Log.d("nikola", it) };
-            }
-
-        })
+        }
     }
 
 }

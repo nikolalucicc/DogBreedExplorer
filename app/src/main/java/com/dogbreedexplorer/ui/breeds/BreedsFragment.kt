@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BreedsFragment : Fragment() {
     private lateinit var adapter: BreedsAdapter
@@ -57,16 +58,17 @@ class BreedsFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        val viewModel: MainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.getDataObserver().observe(viewLifecycleOwner, Observer{
-            if(it != null){
+        val viewModel: MainViewModel by viewModel()
+        viewModel.getDataObserver().observe(viewLifecycleOwner, Observer {
+            if (it != null) {
                 adapter.setAllBreeds(it)
                 adapter.notifyDataSetChanged()
-            } else{
-                Toast.makeText(requireContext(), "Error getting list of breeds", Toast.LENGTH_LONG)
+            } else {
+                Toast.makeText(requireContext(), "Error getting list of breeds", Toast.LENGTH_LONG).show()
             }
         })
         viewModel.getAllBreeds()
     }
+
 
 }

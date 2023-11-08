@@ -23,28 +23,7 @@ class ContainerActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment) as NavHostFragment
-        navController = navHostFragment.navController
+            navController = navHostFragment.navController
 
-//        val recyclerview = findViewById<RecyclerView>(R.id.rvFeed)
-//        recyclerview.layoutManager = LinearLayoutManager(this)
-//        recyclerview.isNestedScrollingEnabled()
-//
-//        adapter = BreedsAdapter(this)
-//        recyclerview.adapter = adapter
-//
-//        initViewModel()
     }
-
-//    private fun initViewModel() {
-//        val viewModel: MainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-//        viewModel.getDataObserver().observe(this, Observer{
-//            if(it != null){
-//                adapter.setAllBreeds(it)
-//                adapter.notifyDataSetChanged()
-//            } else{
-//                Toast.makeText(this, "Error getting list of breeds", Toast.LENGTH_LONG).show()
-//            }
-//        })
-//        viewModel.getAllBreeds()
-//    }
 }

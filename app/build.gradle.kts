@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation ("io.insert-koin:koin-android:3.2.0")
 
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
