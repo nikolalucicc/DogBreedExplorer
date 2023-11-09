@@ -10,12 +10,14 @@ import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BreedsFragment : Fragment() {
@@ -30,7 +32,7 @@ class BreedsFragment : Fragment() {
 
         val appBarLayout = view.findViewById<CollapsingToolbarLayout>(R.id.appBarLayout)
         val params = appBarLayout.layoutParams as CoordinatorLayout.LayoutParams
-        params.anchorGravity = 0 // Postavite da bude sklizak
+        params.anchorGravity = 0
         appBarLayout.layoutParams = params
 
         val buttonSearch = view.findViewById<ImageButton>(R.id.search)
@@ -60,14 +62,22 @@ class BreedsFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel.getDataObserver().observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                adapter.setAllBreeds(it)
-                adapter.notifyDataSetChanged()
-            } else {
-                Toast.makeText(requireContext(), "Error getting list of breeds", Toast.LENGTH_LONG).show()
+        lifecycleScope.launch {
+            viewModel.data.collect { state ->
+                when (state) {
+                    is BreedState.Loading -> {
+                        // Show loading indicator or perform UI updates for loading state
+                    }
+                    is BreedState.Success -> {
+                        adapter.setAllBreeds(state.breeds)
+                        adapter.notifyDataSetChanged()
+                    }
+                    is BreedState.Error -> {
+                        Toast.makeText(requireContext(), "Error getting list of breeds: ${state.message}", Toast.LENGTH_LONG).show()
+                    }
+                }
             }
-        })
+        }
         viewModel.getAllBreeds()
     }
 

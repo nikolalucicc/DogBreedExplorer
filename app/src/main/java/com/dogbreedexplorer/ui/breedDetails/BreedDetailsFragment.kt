@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.dogbreedexplorer.R
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -68,26 +68,36 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
     }
 
     private fun loadDetails(id: Int) {
-        viewModel.getDataObserver().observe(viewLifecycleOwner, Observer { breedDetails ->
-            if (breedDetails != null) {
-                name.text = breedDetails.name
-                origin.text = breedDetails.origin
-                breed_for.text = breedDetails.breed_for
-                breed_group.text = breedDetails.breed_group
-                life_span.text = breedDetails.life_span
-                temperament.text = breedDetails.temperament
+        lifecycleScope.launch {
+            viewModel.getDataObserver().collect { state ->
+                when (state) {
+                    is BreedDetailsState.Loading -> {
+                        // Show loading indicator or perform UI updates for loading state
+                    }
+                    is BreedDetailsState.Success -> {
+                        val breedDetails = state.breedDetails
+                        if (breedDetails != null) {
+                            name.text = breedDetails.name
+                            origin.text = breedDetails.origin
+                            breed_for.text = breedDetails.breed_for
+                            breed_group.text = breedDetails.breed_group
+                            life_span.text = breedDetails.life_span
+                            temperament.text = breedDetails.temperament
 
-                tvName.visibility = if (breedDetails.name != null) View.VISIBLE else View.GONE
-                tvOrigin.visibility = if (breedDetails.origin != null) View.VISIBLE else View.GONE
-                tvBreed_for.visibility = if (breedDetails.breed_for != null) View.VISIBLE else View.GONE
-                tvBreed_group.visibility = if (breedDetails.breed_group != null) View.VISIBLE else View.GONE
-                tvLife_span.visibility = if (breedDetails.life_span != null) View.VISIBLE else View.GONE
-                tvTemperament.visibility = if (breedDetails.temperament != null) View.VISIBLE else View.GONE
-            } else {
-
-                Toast.makeText(requireContext(), "Error getting details", Toast.LENGTH_LONG).show()
+                            tvName.visibility = if (breedDetails.name != null) View.VISIBLE else View.GONE
+                            tvOrigin.visibility = if (breedDetails.origin != null) View.VISIBLE else View.GONE
+                            tvBreed_for.visibility = if (breedDetails.breed_for != null) View.VISIBLE else View.GONE
+                            tvBreed_group.visibility = if (breedDetails.breed_group != null) View.VISIBLE else View.GONE
+                            tvLife_span.visibility = if (breedDetails.life_span != null) View.VISIBLE else View.GONE
+                            tvTemperament.visibility = if (breedDetails.temperament != null) View.VISIBLE else View.GONE
+                        }
+                    }
+                    is BreedDetailsState.Error -> {
+                        Toast.makeText(requireContext(), "Error getting details: ${state.message}", Toast.LENGTH_LONG).show()
+                    }
+                }
             }
-        })
+        }
 
         viewModel.getDetails(id)
     }
