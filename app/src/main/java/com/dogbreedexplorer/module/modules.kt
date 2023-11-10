@@ -5,11 +5,13 @@ import com.dogbreedexplorer.network.RetrofitInstance
 import com.dogbreedexplorer.repository.remote.BreedRepository
 import com.dogbreedexplorer.ui.breedDetails.DetailsViewModel
 import com.dogbreedexplorer.ui.breeds.MainViewModel
+import com.dogbreedexplorer.ui.search.SearchViewModel
 import org.koin.dsl.module
 
 val viewModule = module {
     factory { DetailsViewModel(get()) }
     factory { MainViewModel(get()) }
+    factory { SearchViewModel(get()) }
 }
 
 val networkModule = module {

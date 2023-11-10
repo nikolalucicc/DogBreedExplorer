@@ -31,7 +31,7 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
 
     private var id: Int = -1
 
-    val viewModel: DetailsViewModel by viewModel()
+    private val viewModel: DetailsViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_breed_details, container, false)

@@ -21,7 +21,7 @@ sealed class BreedDetailsState {
 class DetailsViewModel(private val repo: BreedRepository) : ViewModel() {
 
     private val _data: MutableStateFlow<BreedDetailsState> = MutableStateFlow(BreedDetailsState.Loading(false))
-    val data: StateFlow<BreedDetailsState> = _data
+    private val data: StateFlow<BreedDetailsState> = _data
 
     fun getDataObserver(): StateFlow<BreedDetailsState> {
         return data

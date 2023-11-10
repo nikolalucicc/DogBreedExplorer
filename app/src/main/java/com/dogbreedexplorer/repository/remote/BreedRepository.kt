@@ -14,4 +14,7 @@ class BreedRepository(private val api: Api) {
     suspend fun getDetailsForBreed(id: Int): Response<Breed>{
         return api.getDetailsForBreed(id)
     }
+    suspend fun searchBreed(q: String): Response<List<Breed>> {
+        return api.searchBreed(q)
+    }
 }

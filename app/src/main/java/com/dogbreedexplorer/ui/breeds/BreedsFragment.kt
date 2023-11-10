@@ -22,12 +22,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BreedsFragment : Fragment() {
     private lateinit var adapter: BreedsAdapter
-    private lateinit var recyclerView: RecyclerView
 
-    val viewModel: MainViewModel by viewModel()
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_home, container, false)
 
         val appBarLayout = view.findViewById<CollapsingToolbarLayout>(R.id.appBarLayout)
