@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.dogbreedexplorer.R
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -84,6 +86,14 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
                             life_span.text = breedDetails.life_span
                             temperament.text = breedDetails.temperament
 
+                            val referenceImageId = breedDetails?.reference_image_id
+                            val breedImage = view?.findViewById<ImageView>(R.id.breedImage)
+                            val imageUrl = "https://cdn2.thedogapi.com/images/$referenceImageId.jpg"
+                            if (breedImage != null) {
+                                Glide.with(requireContext())
+                                    .load(imageUrl)
+                                    .into(breedImage)
+                            }
                             tvName.visibility = if (breedDetails.name != null) View.VISIBLE else View.GONE
                             tvOrigin.visibility = if (breedDetails.origin != null) View.VISIBLE else View.GONE
                             tvBreed_for.visibility = if (breedDetails.breed_for != null) View.VISIBLE else View.GONE

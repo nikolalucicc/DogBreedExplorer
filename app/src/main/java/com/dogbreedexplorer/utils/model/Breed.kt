@@ -6,4 +6,5 @@ data class Breed(val id: String?,
                  val breed_for: String?,
                  val breed_group: String?,
                  val life_span: String?,
-                 val temperament: String?)
+                 val temperament: String?,
+                 val reference_image_id: String)

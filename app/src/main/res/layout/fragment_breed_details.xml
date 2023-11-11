@@ -18,15 +18,16 @@
             android:text="Breed name: "
             android:textStyle="bold"
             android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/tvBreedNameDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/tvBreedName"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvOrigin"
@@ -35,7 +36,7 @@
             android:text="Origin: "
             android:textStyle="bold"
             android:textSize="16sp"
-            tools:ignore="MissingConstraints"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvBreedName"/>
 
         <TextView
@@ -44,8 +45,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/tvOrigin"
             app:layout_constraintTop_toBottomOf="@id/tvBreedName"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tvBreedFor"
@@ -54,7 +54,7 @@
             android:text="Breed for: "
             android:textStyle="bold"
             android:textSize="16sp"
-            tools:ignore="MissingConstraints"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvOrigin"/>
 
         <TextView
@@ -63,8 +63,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/tvBreedFor"
             app:layout_constraintTop_toBottomOf="@id/tvOrigin"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tvBreedGroup"
@@ -73,7 +72,7 @@
             android:text="Breed group: "
             android:textStyle="bold"
             android:textSize="16sp"
-            tools:ignore="MissingConstraints"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvBreedFor"/>
 
         <TextView
@@ -82,8 +81,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/tvBreedGroup"
             app:layout_constraintTop_toBottomOf="@id/tvBreedFor"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tvLifeSpan"
@@ -92,7 +90,7 @@
             android:text="Life span: "
             android:textStyle="bold"
             android:textSize="16sp"
-            tools:ignore="MissingConstraints"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvBreedGroup"/>
 
         <TextView
@@ -101,8 +99,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/tvLifeSpan"
             app:layout_constraintTop_toBottomOf="@id/tvBreedGroup"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tvTemperament"
@@ -111,8 +108,8 @@
             android:text="Temperament: "
             android:textStyle="bold"
             android:textSize="16sp"
-            tools:ignore="MissingConstraints"
-            app:layout_constraintTop_toBottomOf="@+id/tvLifeSpan"/>
+            app:layout_constraintTop_toBottomOf="@+id/tvLifeSpan"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/tvTemperamentDetails"
@@ -120,46 +117,15 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/tvTemperament"
             app:layout_constraintTop_toBottomOf="@id/tvLifeSpan"
-            android:textSize="16sp"
-            tools:ignore="MissingConstraints" />
+            android:textSize="16sp" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvHeight"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Height: "-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="16sp"-->
-<!--            tools:ignore="MissingConstraints"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/tvTemperament"/>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvHeightDetails"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintStart_toEndOf="@id/tvHeight"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tvTemperament"-->
-<!--            android:textSize="16sp"-->
-<!--            tools:ignore="MissingConstraints" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvWeight"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Weight: "-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="16sp"-->
-<!--            tools:ignore="MissingConstraints"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/tvHeight"/>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvWeightDetails"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintStart_toEndOf="@id/tvWeight"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tvHeight"-->
-<!--            android:textSize="16sp"-->
-<!--            tools:ignore="MissingConstraints" />-->
+        <ImageView
+            android:id="@+id/breedImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvTemperament"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
