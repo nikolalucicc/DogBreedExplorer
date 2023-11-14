@@ -1,6 +1,7 @@
 package com.dogbreedexplorer.app
 
 import android.app.Application
+import com.dogbreedexplorer.module.dbModule
 import com.dogbreedexplorer.module.networkModule
 import com.dogbreedexplorer.module.repositoryModule
 import com.dogbreedexplorer.module.viewModule
@@ -18,7 +19,8 @@ class App : Application() {
                 listOf(
                     viewModule,
                     repositoryModule,
-                    networkModule
+                    networkModule,
+                    dbModule(this@App)
                 )
             )
         }
