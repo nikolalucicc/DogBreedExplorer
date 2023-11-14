@@ -1,6 +1,7 @@
 package com.dogbreedexplorer.ui.breeds
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -65,18 +66,22 @@ class BreedsFragment : Fragment() {
                 when (state) {
                     is BreedState.Loading -> {
                         // Show loading indicator or perform UI updates for loading state
+                        Log.d("ViewModel", "Loading...")
                     }
                     is BreedState.Success -> {
                         adapter.setAllBreeds(state.breeds)
                         adapter.notifyDataSetChanged()
+                        Log.d("ViewModel", "Success: ${state.breeds}")
                     }
                     is BreedState.Error -> {
-                        Toast.makeText(requireContext(), "Error getting list of breeds: ${state.message}", Toast.LENGTH_LONG).show()
+                        val errorMessage = "Error getting list of breeds: ${state.message}"
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
+                        Log.e("ViewModel", errorMessage)
                     }
                 }
             }
         }
-        viewModel.getAllBreeds()
+        viewModel.getAllBreeds(requireContext())
     }
 
 
