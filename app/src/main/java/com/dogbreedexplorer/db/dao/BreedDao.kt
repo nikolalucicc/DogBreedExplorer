@@ -16,4 +16,7 @@ interface BreedDao {
 
     @Query("SELECT * FROM breed")
     suspend fun getAll(): List<Breed>
+
+    @Query("SELECT * FROM breed WHERE id = :id")
+    suspend fun getDetails(id: Int): Breed
 }

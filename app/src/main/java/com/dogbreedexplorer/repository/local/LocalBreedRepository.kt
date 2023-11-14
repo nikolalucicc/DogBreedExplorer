@@ -17,4 +17,9 @@ class LocalBreedRepository (private val breedDao: BreedDao) {
         val breeds = breedDao.getAll()
         return Response.success(breeds)
     }
+
+    suspend fun getDetails(id: Int): Response<Breed> {
+        val breed = breedDao.getDetails(id)
+        return Response.success(breed)
+    }
 }

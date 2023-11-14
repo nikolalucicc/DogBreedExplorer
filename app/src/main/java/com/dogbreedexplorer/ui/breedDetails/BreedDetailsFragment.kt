@@ -109,7 +109,7 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
             }
         }
 
-        viewModel.getDetails(id)
+        viewModel.getDetails(id, requireContext())
     }
 
     companion object {

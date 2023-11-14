@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.dogbreedexplorer.repository.local.LocalBreedRepository
 import com.dogbreedexplorer.repository.remote.BreedRepository
 import com.dogbreedexplorer.ui.model.Breed
+import com.dogbreedexplorer.utils.NetworkUtil
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -22,14 +23,15 @@ sealed class BreedState {
 }
 class MainViewModel(
     private val repo: BreedRepository,
-    private val localRepo: LocalBreedRepository
+    private val localRepo: LocalBreedRepository,
+    private val networkUtil: NetworkUtil
 ) : ViewModel() {
 
     private val _data: MutableStateFlow<BreedState> = MutableStateFlow(BreedState.Loading(false))
     val data: StateFlow<BreedState> = _data
 
     fun getAllBreeds(context: Context) {
-        if (isNetworkConnected(context)) {
+        if (networkUtil.isNetworkConnected(context)) {
             viewModelScope.launch {
                 try {
                     _data.value = BreedState.Loading(true)
@@ -65,20 +67,6 @@ class MainViewModel(
                     _data.value = BreedState.Loading(false)
                 }
             }
-        }
-    }
-
-    private fun isNetworkConnected(context: Context): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val activeNetwork = connectivityManager.activeNetwork
-            activeNetwork != null && connectivityManager.getNetworkCapabilities(activeNetwork)
-                ?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
-        } else {
-            // Deprecated in API level 29 (Android 10)
-            @Suppress("DEPRECATION")
-            val activeNetworkInfo = connectivityManager.activeNetworkInfo
-            activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
         }
     }
 }
