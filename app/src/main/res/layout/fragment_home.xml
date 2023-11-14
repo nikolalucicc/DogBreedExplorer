@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.breeds.BreedsFragment">
+
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@null">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_collapseMode="pin">
+
+            <!-- Elementi unutar Toolbar-a -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/app_name"
+                android:textSize="24sp"
+                android:fontFamily="sans-serif-medium"/>
+
+            <ImageButton
+                android:id="@+id/search"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:src="@drawable/baseline_search_24"
+                android:background="@null"
+                tools:ignore="MissingConstraints"/>
+
+            <ImageButton
+                android:id="@+id/liked"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:src="@drawable/baseline_favorite_24"
+                android:background="@null"
+                tools:ignore="MissingConstraints"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    <!-- Vaš sadržaj ispod trake treba biti ovde, kao RecyclerView ili NestedScrollView. -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFeed"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        android:nestedScrollingEnabled="true"
+        tools:listitem="@layout/card_item"
+        tools:ignore="MissingConstraints"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/constraint_home"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        android:layout_margin="5dp">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:text="@string/app_name"-->
+<!--            android:textSize="24sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.5"-->
+<!--            android:fontFamily="sans-serif-medium"/>-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/search"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:src="@drawable/baseline_search_24"-->
+<!--            android:background="@null"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/liked"-->
+<!--            tools:ignore="MissingConstraints" />-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/liked"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:src="@drawable/baseline_favorite_24"-->
+<!--            android:background="@null"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            tools:ignore="MissingConstraints" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rvFeed"-->
+<!--        android:layout_margin="8dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="match_parent"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/constraint_home"-->
+<!--        android:nestedScrollingEnabled="true"-->
+<!--        tools:listitem="@layout/card_item"-->
+<!--        tools:ignore="MissingConstraints" />-->

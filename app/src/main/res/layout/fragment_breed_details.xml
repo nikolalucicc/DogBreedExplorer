@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.breedDetails.BreedDetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="6dp">
+
+        <TextView
+            android:id="@+id/tvBreedName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Breed name: "
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvBreedNameDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvBreedName"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvOrigin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Origin: "
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBreedName"/>
+
+        <TextView
+            android:id="@+id/tvBreedOriginDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvOrigin"
+            app:layout_constraintTop_toBottomOf="@id/tvBreedName"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tvBreedFor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Breed for: "
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrigin"/>
+
+        <TextView
+            android:id="@+id/tvBreedForDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvBreedFor"
+            app:layout_constraintTop_toBottomOf="@id/tvOrigin"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tvBreedGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Breed group: "
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBreedFor"/>
+
+        <TextView
+            android:id="@+id/tvBreedGroupDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvBreedGroup"
+            app:layout_constraintTop_toBottomOf="@id/tvBreedFor"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tvLifeSpan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Life span: "
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBreedGroup"/>
+
+        <TextView
+            android:id="@+id/tvLifeSpanDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvLifeSpan"
+            app:layout_constraintTop_toBottomOf="@id/tvBreedGroup"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tvTemperament"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperament: "
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/tvLifeSpan"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvTemperamentDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvTemperament"
+            app:layout_constraintTop_toBottomOf="@id/tvLifeSpan"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/breedImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvTemperament"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

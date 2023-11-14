@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/breeds_fragment">
+
+    <fragment
+        android:id="@+id/search_fragment"
+        android:name="com.dogbreedexplorer.ui.search.SearchFragment"
+        android:label="fragment_search_fragment"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_search_fragment_to_home_fragment"
+            app:destination="@id/breeds_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/breeds_fragment"
+        android:name="com.dogbreedexplorer.ui.breeds.BreedsFragment"
+        android:label="fragment_home_fragment"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_fragment_to_search_fragment"
+            app:destination="@id/search_fragment" />
+        <action
+            android:id="@+id/action_home_fragment_to_liked_fragment"
+            app:destination="@id/favorite_fragment" />
+        <action
+            android:id="@+id/action_breeds_fragment_to_breedDetailsFragment"
+            app:destination="@id/breedDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favorite_fragment"
+        android:name="com.dogbreedexplorer.ui.favorite.FavoriteFragment"
+        android:label="fragment_liked_fragment"
+        tools:layout="@layout/fragment_liked">
+        <action
+            android:id="@+id/action_liked_fragment_to_home_fragment"
+            app:destination="@id/breeds_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/breedDetailsFragment"
+        android:name="com.dogbreedexplorer.ui.breedDetails.BreedDetailsFragment"
+        android:label="fragment_breed_details"
+        tools:layout="@layout/fragment_breed_details" >
+        <action
+            android:id="@+id/action_breedDetailsFragment_to_breeds_fragment"
+            app:destination="@id/breeds_fragment" />
+    </fragment>
+</navigation>
