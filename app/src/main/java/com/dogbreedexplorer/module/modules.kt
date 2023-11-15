@@ -16,7 +16,7 @@ import org.koin.dsl.module
 val viewModule = module {
     factory { DetailsViewModel(get(), get(), get()) }
     factory { MainViewModel(get(), get(), get()) }
-    factory { SearchViewModel(get()) }
+    factory { SearchViewModel(get(), get(), get()) }
 }
 
 val networkModule = module {

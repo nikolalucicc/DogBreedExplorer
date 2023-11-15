@@ -22,4 +22,9 @@ class LocalBreedRepository (private val breedDao: BreedDao) {
         val breed = breedDao.getDetails(id)
         return Response.success(breed)
     }
+
+    suspend fun searchBreed(q: String): Response<List<Breed>>{
+        val breed = breedDao.searchBreed(q)
+        return Response.success(breed)
+    }
 }

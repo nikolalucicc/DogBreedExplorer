@@ -71,6 +71,6 @@ class SearchFragment : Fragment() {
                 }
             }
         }
-        viewModel.searchBreed(q)
+        viewModel.searchBreed(q, requireContext())
     }
 }
