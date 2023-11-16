@@ -1,5 +1,6 @@
 package com.dogbreedexplorer.ui.search
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.dogbreedexplorer.R
 import com.dogbreedexplorer.ui.breeds.BreedState
 import com.dogbreedexplorer.ui.breeds.BreedsAdapter
 import com.dogbreedexplorer.ui.breeds.MainViewModel
+import com.dogbreedexplorer.ui.model.Breed
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,7 +52,9 @@ class SearchFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(context)
         recyclerview.isNestedScrollingEnabled()
 
-        adapter = BreedsAdapter(requireActivity())
+        adapter = BreedsAdapter(requireActivity()) {breed ->
+            shareBreed(breed)
+        }
         recyclerview.adapter = adapter
     }
 
@@ -72,5 +76,18 @@ class SearchFragment : Fragment() {
             }
         }
         viewModel.searchBreed(q, requireContext())
+    }
+
+    private fun shareBreed(breed: Breed) {
+        val externalApiUrl = "Check out this breed: ${breed.name} https://api.thedogapi.com/v1/breeds/${breed.id}"
+
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, externalApiUrl)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
     }
 }

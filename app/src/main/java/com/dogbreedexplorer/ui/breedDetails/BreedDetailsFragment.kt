@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class BreedDetailsFragment(id: Int?) : Fragment() {
+class BreedDetailsFragment : Fragment() {
 
     private lateinit var name: TextView
     private lateinit var origin: TextView
@@ -35,7 +35,10 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
 
     private val viewModel: DetailsViewModel by viewModel()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_breed_details, container, false)
 
         name = view.findViewById(R.id.tvBreedNameDetails)
@@ -65,7 +68,13 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
         if (id != -1) {
             loadDetails(id)
         } else {
-            Toast.makeText(requireContext(), "Invalid breed ID", Toast.LENGTH_LONG).show()
+            // Check if a deep link is provided
+            val deepLinkBreedId = activity?.intent?.data?.lastPathSegment?.toIntOrNull()
+            if (deepLinkBreedId != null) {
+                loadDetails(deepLinkBreedId)
+            } else {
+                Toast.makeText(requireContext(), "Invalid breed ID", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -103,7 +112,11 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
                         }
                     }
                     is BreedDetailsState.Error -> {
-                        Toast.makeText(requireContext(), "Error getting details: ${state.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Error getting details: ${state.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             }
@@ -115,10 +128,10 @@ class BreedDetailsFragment(id: Int?) : Fragment() {
     companion object {
         private const val ARG_BREED_ID = "breed_id"
 
-        fun newInstance(id: Int): BreedDetailsFragment {
-            val fragment = BreedDetailsFragment(id)
+        fun newInstance(id: Int? = null): BreedDetailsFragment {
+            val fragment = BreedDetailsFragment()
             val args = Bundle()
-            args.putInt(ARG_BREED_ID, id)
+            args.putInt(ARG_BREED_ID, id ?: -1)
             fragment.arguments = args
             return fragment
         }

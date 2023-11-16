@@ -56,6 +56,17 @@
                 tools:ignore="MissingConstraints"
                 app:layout_constraintTop_toBottomOf="@id/tvOrigin"/>
 
+            <ImageButton
+                android:id="@+id/share"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:src="@drawable/baseline_share_24"
+                android:background="@color/white"
+                app:layout_constraintEnd_toStartOf="@id/liked"
+                tools:ignore="MissingConstraints"
+                app:layout_constraintTop_toBottomOf="@id/tvOrigin"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

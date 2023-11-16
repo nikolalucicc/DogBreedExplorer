@@ -1,5 +1,6 @@
 package com.dogbreedexplorer.ui.breeds
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
+import com.dogbreedexplorer.ui.model.Breed
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.coroutines.launch
@@ -54,7 +56,9 @@ class BreedsFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(context)
         recyclerview.isNestedScrollingEnabled()
 
-        adapter = BreedsAdapter(requireActivity())
+        adapter = BreedsAdapter(requireActivity()) {breed ->
+            shareBreed(breed)
+        }
         recyclerview.adapter = adapter
 
         initViewModel()
@@ -84,5 +88,16 @@ class BreedsFragment : Fragment() {
         viewModel.getAllBreeds(requireContext())
     }
 
+    private fun shareBreed(breed: Breed) {
+        val deepLinkUrl = "Check out this breed: ${breed.name} https://api.thedogapi.com/v1/breeds/${breed.id}"
 
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, deepLinkUrl)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+    }
 }

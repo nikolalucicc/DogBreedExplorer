@@ -5,15 +5,15 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
 import com.dogbreedexplorer.ui.breedDetails.BreedDetailsFragment
 import com.dogbreedexplorer.ui.model.Breed
 
-class BreedsAdapter(val activity: Activity) : RecyclerView.Adapter<BreedsAdapter.FeedViewHolder>() {
+class BreedsAdapter(val activity: Activity, private val onShareClickListener: (Breed) -> Unit) : RecyclerView.Adapter<BreedsAdapter.FeedViewHolder>() {
 
     private var breedList: List<Breed>? = null
 
@@ -35,7 +35,6 @@ class BreedsAdapter(val activity: Activity) : RecyclerView.Adapter<BreedsAdapter
                 val item: Breed = breedList!![position]
                 val activity = v!!.context as AppCompatActivity
 
-                // Kreirajte instancu fragmenta pomoću newInstance metode
                 val idInt = item.id?.toIntOrNull() ?: -1
                 val details = BreedDetailsFragment.newInstance(idInt)
 
@@ -48,6 +47,13 @@ class BreedsAdapter(val activity: Activity) : RecyclerView.Adapter<BreedsAdapter
 
             }
         })
+
+        val breed = breedList?.get(position)
+        holder.shareButton.setOnClickListener{
+            if (breed != null) {
+                onShareClickListener.invoke(breed)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -58,6 +64,7 @@ class BreedsAdapter(val activity: Activity) : RecyclerView.Adapter<BreedsAdapter
     class FeedViewHolder(item: View) : RecyclerView.ViewHolder(item){
         val name : TextView = itemView.findViewById(R.id.tvBreed)
         val origin: TextView = itemView.findViewById(R.id.tvOrigin)
+        val shareButton: ImageButton = itemView.findViewById(R.id.share)
 
         fun bind(data: Breed, activity: Activity){
             name.text = data.name

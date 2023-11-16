@@ -3,7 +3,6 @@ package com.dogbreedexplorer.ui.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import io.reactivex.annotations.NonNull
 
 @Entity
 data class Breed(@PrimaryKey val id: String,

@@ -42,9 +42,12 @@
         android:id="@+id/breedDetailsFragment"
         android:name="com.dogbreedexplorer.ui.breedDetails.BreedDetailsFragment"
         android:label="fragment_breed_details"
-        tools:layout="@layout/fragment_breed_details" >
+        tools:layout="@layout/fragment_breed_details">
         <action
             android:id="@+id/action_breedDetailsFragment_to_breeds_fragment"
             app:destination="@id/breeds_fragment" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="https://api.thedogapi.com/v1/breeds/{id}" />
     </fragment>
 </navigation>
