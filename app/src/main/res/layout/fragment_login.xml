@@ -5,37 +5,46 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/tvRegister"
+        android:id="@+id/tvLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registration"
+        android:text="Login"
         android:gravity="center"
         android:textSize="20dp"/>
 
     <EditText
-        android:id="@+id/emailRegister"
+        android:id="@+id/emailLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
-        android:layout_below="@+id/tvRegister"
         android:inputType="textEmailAddress"
+        android:layout_below="@+id/tvLogin"
         android:layout_marginBottom="16dp"/>
 
     <EditText
-        android:id="@+id/passwordRegister"
+        android:id="@+id/passwordLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
         android:inputType="textPassword"
-        android:layout_below="@+id/emailRegister"
+        android:layout_below="@+id/emailLogin"
         android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:layout_below="@+id/passwordRegister"
+        android:text="Login"
+        android:layout_below="@+id/passwordLogin"
         android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/textViewRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Don't have an account? Register here"
+        android:layout_below="@+id/buttonLogin"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/holo_blue_dark"/>
 
 </RelativeLayout>
