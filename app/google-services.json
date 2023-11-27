@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "334717583385",
+    "project_id": "dogbreedexplorerauth-86499",
+    "storage_bucket": "dogbreedexplorerauth-86499.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334717583385:android:8b248ad2481812d8b2aa88",
+        "android_client_info": {
+          "package_name": "com.dogbreedexplorer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOajBIb5cXdWEvZw77o7sFCLcWjW51CLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
