@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
+import com.dogbreedexplorer.ui.login.LoginViewModel
 import com.dogbreedexplorer.ui.model.Breed
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -27,6 +28,7 @@ class BreedsFragment : Fragment() {
     private lateinit var adapter: BreedsAdapter
 
     private val viewModel: MainViewModel by viewModel()
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view =  inflater.inflate(R.layout.fragment_home, container, false)
@@ -45,6 +47,10 @@ class BreedsFragment : Fragment() {
         buttonLiked.setOnClickListener{
             findNavController().navigate(R.id.action_home_fragment_to_liked_fragment)
         }
+
+        loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+        val token = loginViewModel.token
+        Log.d("AuthToken", "Authentication Token in breeds fragment: $token")
 
         return view
     }
