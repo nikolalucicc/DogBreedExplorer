@@ -6,14 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
 import com.dogbreedexplorer.ui.breedDetails.BreedDetailsFragment
 import com.dogbreedexplorer.ui.model.Breed
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class BreedsAdapter(val activity: Activity, private val onShareClickListener: (Breed) -> Unit) : RecyclerView.Adapter<BreedsAdapter.FeedViewHolder>() {
+class BreedsAdapter(
+    val activity: Activity,
+    private val viewModel: MainViewModel,
+    private var onShareClickListener: (Breed) -> Unit
+) : RecyclerView.Adapter<BreedsAdapter.FeedViewHolder>() {
 
     private var breedList: List<Breed>? = null
 
@@ -54,6 +62,14 @@ class BreedsAdapter(val activity: Activity, private val onShareClickListener: (B
                 onShareClickListener.invoke(breed)
             }
         }
+
+        holder.voteButton.setOnClickListener {
+            if (breed != null) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    breed.reference_image_id?.let { it1 -> viewModel.sendVote(it1, null, 1) }
+                }
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -61,15 +77,25 @@ class BreedsAdapter(val activity: Activity, private val onShareClickListener: (B
         else return breedList?.size!!
     }
 
-    class FeedViewHolder(item: View) : RecyclerView.ViewHolder(item){
-        val name : TextView = itemView.findViewById(R.id.tvBreed)
+    class FeedViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+        val name: TextView = itemView.findViewById(R.id.tvBreed)
         val origin: TextView = itemView.findViewById(R.id.tvOrigin)
         val shareButton: ImageButton = itemView.findViewById(R.id.share)
+        val voteButton: ImageButton = itemView.findViewById(R.id.vote)
+        val breedImage: ImageView = itemView.findViewById(R.id.ivBreedImage)
+        val numberOfFavorites: TextView = itemView.findViewById(R.id.tvNumberOfFavorites)
 
-        fun bind(data: Breed, activity: Activity){
+        fun bind(data: Breed, activity: Activity) {
             name.text = data.name
             origin.text = data.origin
+
+            if (!data.reference_image_id.isNullOrBlank()) {
+                breedImage.visibility = View.VISIBLE
+            } else {
+                breedImage.visibility = View.INVISIBLE
+            }
         }
     }
+
 
 }

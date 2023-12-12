@@ -1,19 +1,22 @@
 package com.dogbreedexplorer.ui.breeds
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import android.util.Log
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dogbreedexplorer.app.App
 import com.dogbreedexplorer.repository.local.LocalBreedRepository
 import com.dogbreedexplorer.repository.remote.BreedRepository
 import com.dogbreedexplorer.ui.model.Breed
 import com.dogbreedexplorer.utils.NetworkUtil
+import com.dogbreedexplorer.utils.model.Vote
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 sealed class BreedState {
@@ -69,4 +72,14 @@ class MainViewModel(
             }
         }
     }
+
+    suspend fun sendVote(imageId: String, subId: String?, value: Int) {
+        val requestBody = Vote(imageId, subId, value)
+        val response = repo.sendVote(requestBody)
+
+        if (!response.isSuccessful) {
+            _data.value = BreedState.Error("Error sending vote: ${response.code()} - ${response.message()}")
+        }
+    }
+
 }

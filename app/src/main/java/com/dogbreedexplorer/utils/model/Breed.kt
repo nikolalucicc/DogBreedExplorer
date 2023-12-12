@@ -12,4 +12,5 @@ data class Breed(@PrimaryKey val id: String,
                  @ColumnInfo(name = "breed_group") val breed_group: String?,
                  @ColumnInfo(name = "life_span") val life_span: String?,
                  @ColumnInfo(name = "temperament") val temperament: String?,
-                 @ColumnInfo(name = "reference_image_id") val reference_image_id: String?)
+                 @ColumnInfo(name = "reference_image_id") val reference_image_id: String?
+)
