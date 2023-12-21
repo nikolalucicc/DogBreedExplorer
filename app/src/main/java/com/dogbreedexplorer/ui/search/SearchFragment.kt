@@ -72,7 +72,7 @@ class SearchFragment : Fragment() {
                         adapter.notifyDataSetChanged()
                     }
                     is SearchState.Error -> {
-                        Toast.makeText(requireContext(), "Error getting list of breeds: ${state.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), "Error getting search: ${state.message}", Toast.LENGTH_LONG).show()
                     }
                 }
             }

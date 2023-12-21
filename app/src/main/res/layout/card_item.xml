@@ -46,11 +46,11 @@
                 android:textSize="14dp" />
 
             <ImageButton
-                android:id="@+id/vote"
+                android:id="@+id/favouriteBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="end"
-                android:src="@drawable/baseline_favorite_border_24"
+                android:src="@drawable/baseline_favorite_24"
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:ignore="MissingConstraints"
@@ -63,17 +63,17 @@
                 android:layout_gravity="end"
                 android:src="@drawable/baseline_share_24"
                 android:background="@color/white"
-                app:layout_constraintEnd_toStartOf="@id/tvNumberOfFavorites"
+                app:layout_constraintEnd_toStartOf="@id/tvNumberOfVotes"
                 tools:ignore="MissingConstraints"
                 app:layout_constraintTop_toBottomOf="@id/tvOrigin"/>
 
             <TextView
-                android:id="@+id/tvNumberOfFavorites"
+                android:id="@+id/tvNumberOfVotes"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="end"
                 android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toStartOf="@id/vote"
+                app:layout_constraintEnd_toStartOf="@id/favouriteBtn"
                 app:layout_constraintTop_toBottomOf="@id/tvOrigin"
                 android:text="100"
                 android:textSize="14dp"/>

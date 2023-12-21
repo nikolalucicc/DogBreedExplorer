@@ -36,11 +36,11 @@
                 tools:ignore="MissingConstraints"/>
 
             <ImageButton
-                android:id="@+id/liked"
+                android:id="@+id/favorite"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="end"
-                android:src="@drawable/baseline_favorite_24"
+                android:src="@drawable/baseline_favorite_border_24"
                 android:background="@null"
                 tools:ignore="MissingConstraints"/>
 

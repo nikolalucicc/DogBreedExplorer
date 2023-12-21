@@ -9,6 +9,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
 import com.dogbreedexplorer.ui.breedDetails.BreedDetailsFragment
@@ -63,11 +64,13 @@ class BreedsAdapter(
             }
         }
 
-        holder.voteButton.setOnClickListener {
+        holder.favouriteButton.setOnClickListener {
             if (breed != null) {
                 CoroutineScope(Dispatchers.Main).launch {
-                    breed.reference_image_id?.let { it1 -> viewModel.sendVote(it1, null, 1) }
+                    breed.reference_image_id?.let { it1 -> viewModel.addToFavourite(it1, null) }
                 }
+                holder.isVoted = !holder.isVoted
+                holder.updateFavouriteButtonColor()
             }
         }
     }
@@ -81,9 +84,16 @@ class BreedsAdapter(
         val name: TextView = itemView.findViewById(R.id.tvBreed)
         val origin: TextView = itemView.findViewById(R.id.tvOrigin)
         val shareButton: ImageButton = itemView.findViewById(R.id.share)
-        val voteButton: ImageButton = itemView.findViewById(R.id.vote)
+        val favouriteButton: ImageButton = itemView.findViewById(R.id.favouriteBtn)
         val breedImage: ImageView = itemView.findViewById(R.id.ivBreedImage)
-        val numberOfFavorites: TextView = itemView.findViewById(R.id.tvNumberOfFavorites)
+        val numberOfVotes: TextView = itemView.findViewById(R.id.tvNumberOfVotes)
+
+        var isVoted: Boolean = false
+        fun updateFavouriteButtonColor() {
+            val colorResId = if (isVoted) R.color.red else android.R.color.black
+            val newColor = ContextCompat.getColor(itemView.context, colorResId)
+            favouriteButton.setColorFilter(newColor)
+        }
 
         fun bind(data: Breed, activity: Activity) {
             name.text = data.name
@@ -94,8 +104,8 @@ class BreedsAdapter(
             } else {
                 breedImage.visibility = View.INVISIBLE
             }
+            updateFavouriteButtonColor()
         }
     }
-
 
 }

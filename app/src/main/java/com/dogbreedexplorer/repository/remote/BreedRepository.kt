@@ -3,6 +3,7 @@ package com.dogbreedexplorer.repository.remote
 import android.database.Observable
 import com.dogbreedexplorer.network.Api
 import com.dogbreedexplorer.ui.model.Breed
+import com.dogbreedexplorer.utils.model.Favourite
 import com.dogbreedexplorer.utils.model.Vote
 import retrofit2.Call
 import retrofit2.Response
@@ -21,7 +22,7 @@ class BreedRepository(private val api: Api) {
     suspend fun sendVote(vote: Vote): Response<Any>{
         return api.sendVote(vote)
     }
-    suspend fun getVotes(): Response<Any>{
-        return api.getVotes()
+    suspend fun addToFavourite(favourite: Favourite): Response<Any>{
+        return api.addToFavourite(favourite)
     }
 }

@@ -114,7 +114,7 @@ class BreedDetailsFragment : Fragment() {
                     is BreedDetailsState.Error -> {
                         Toast.makeText(
                             requireContext(),
-                            "Error getting details: ${state.message}",
+                            "Error getting details of breed: ${state.message}",
                             Toast.LENGTH_LONG
                         ).show()
                     }

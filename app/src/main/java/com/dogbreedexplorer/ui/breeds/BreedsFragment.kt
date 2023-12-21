@@ -41,7 +41,7 @@ class BreedsFragment : Fragment() {
             findNavController().navigate(R.id.action_home_fragment_to_search_fragment)
         }
 
-        val buttonLiked = view.findViewById<ImageButton>(R.id.liked)
+        val buttonLiked = view.findViewById<ImageButton>(R.id.favorite)
         buttonLiked.setOnClickListener{
             findNavController().navigate(R.id.action_home_fragment_to_liked_fragment)
         }

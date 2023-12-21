@@ -11,6 +11,7 @@ import com.dogbreedexplorer.repository.local.LocalBreedRepository
 import com.dogbreedexplorer.repository.remote.BreedRepository
 import com.dogbreedexplorer.ui.model.Breed
 import com.dogbreedexplorer.utils.NetworkUtil
+import com.dogbreedexplorer.utils.model.Favourite
 import com.dogbreedexplorer.utils.model.Vote
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -73,12 +74,12 @@ class MainViewModel(
         }
     }
 
-    suspend fun sendVote(imageId: String, subId: String?, value: Int) {
-        val requestBody = Vote(imageId, subId, value)
-        val response = repo.sendVote(requestBody)
+    suspend fun addToFavourite(imageId: String, subId: String?) {
+        val requestBody = Favourite(imageId, null)
+        val response = repo.addToFavourite(requestBody)
 
         if (!response.isSuccessful) {
-            _data.value = BreedState.Error("Error sending vote: ${response.code()} - ${response.message()}")
+            _data.value = BreedState.Error("Error adding to favourite: ${response.code()} - ${response.message()}")
         }
     }
 
