@@ -1,17 +1,17 @@
 package com.dogbreedexplorer.db
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.DatabaseConfiguration
-import androidx.room.InvalidationTracker
-import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteOpenHelper
+import androidx.room.TypeConverters
 import com.dogbreedexplorer.db.dao.BreedDao
-import com.dogbreedexplorer.ui.breeds.MainViewModel
 import com.dogbreedexplorer.ui.model.Breed
+import com.dogbreedexplorer.utils.converter.ImageConverter
+import com.dogbreedexplorer.utils.model.Favorite
+import com.dogbreedexplorer.utils.model.Image
+import org.koin.dsl.module
 
-@Database(entities = [Breed::class], version = 2, exportSchema = false)
+@Database(entities = [Breed::class, Favorite::class], version = 4, exportSchema = false)
+@TypeConverters(ImageConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun breedDao() : BreedDao
 

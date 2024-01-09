@@ -33,7 +33,7 @@
         android:id="@+id/favorite_fragment"
         android:name="com.dogbreedexplorer.ui.favorite.FavoriteFragment"
         android:label="fragment_liked_fragment"
-        tools:layout="@layout/fragment_liked">
+        tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/action_liked_fragment_to_home_fragment"
             app:destination="@id/breeds_fragment" />

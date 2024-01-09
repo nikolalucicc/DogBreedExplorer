@@ -54,7 +54,7 @@ class BreedsFragment : Fragment() {
 
         val recyclerview: RecyclerView = view.findViewById(R.id.rvFeed)
         recyclerview.layoutManager = LinearLayoutManager(context)
-        recyclerview.isNestedScrollingEnabled()
+        recyclerview.isNestedScrollingEnabled
 
         adapter = BreedsAdapter(requireActivity(), viewModel) { breed ->
             shareBreed(breed)

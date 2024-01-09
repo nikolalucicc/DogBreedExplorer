@@ -9,14 +9,18 @@ import com.dogbreedexplorer.repository.local.LocalBreedRepository
 import com.dogbreedexplorer.repository.remote.BreedRepository
 import com.dogbreedexplorer.ui.breedDetails.DetailsViewModel
 import com.dogbreedexplorer.ui.breeds.MainViewModel
+import com.dogbreedexplorer.ui.favorite.FavouriteViewModel
 import com.dogbreedexplorer.ui.search.SearchViewModel
 import com.dogbreedexplorer.utils.NetworkUtil
+import com.dogbreedexplorer.utils.model.Favorite
+import com.dogbreedexplorer.utils.model.Image
 import org.koin.dsl.module
 
 val viewModule = module {
     factory { DetailsViewModel(get(), get(), get()) }
     factory { MainViewModel(get(), get(), get()) }
     factory { SearchViewModel(get(), get(), get()) }
+    factory { FavouriteViewModel(get(), get(), get()) }
 }
 
 val networkModule = module {
@@ -41,4 +45,21 @@ fun dbModule(context: Context) = module {
     }
 
     single { get<AppDatabase>().breedDao() }
+}
+
+val imageModule = module {
+    single<Image> { Image(id = "", url = "") } // You can provide default values or fetch them dynamically
+}
+
+val favoriteModule = module {
+    single<Favorite> { (id: String, user_id: String, image_id: String, sub_id: String?, created_at: String) ->
+        Favorite(
+            id = id,
+            user_id = user_id,
+            image_id = image_id,
+            sub_id = sub_id,
+            created_at = created_at,
+            image = get() // Inject the Image instance
+        )
+    }
 }

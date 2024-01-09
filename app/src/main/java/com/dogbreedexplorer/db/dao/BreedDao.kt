@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.dogbreedexplorer.ui.model.Breed
+import com.dogbreedexplorer.utils.model.Favorite
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import retrofit2.Response
@@ -22,4 +23,10 @@ interface BreedDao {
 
     @Query("SELECT * FROM breed WHERE name LIKE '%' || :q || '%'")
     suspend fun searchBreed(q: String): List<Breed>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAllFavorite(fav: List<Favorite>)
+
+    @Query("SELECT * FROM favorite")
+    suspend fun getAllFavorite(): List<Favorite>
 }

@@ -2,6 +2,7 @@ package com.dogbreedexplorer.repository.local
 
 import com.dogbreedexplorer.db.dao.BreedDao
 import com.dogbreedexplorer.ui.model.Breed
+import com.dogbreedexplorer.utils.model.Favorite
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import okhttp3.MediaType
@@ -26,5 +27,14 @@ class LocalBreedRepository (private val breedDao: BreedDao) {
     suspend fun searchBreed(q: String): Response<List<Breed>>{
         val breed = breedDao.searchBreed(q)
         return Response.success(breed)
+    }
+
+    suspend fun insertAllFavorite(favorites: List<Favorite>) {
+        return breedDao.insertAllFavorite(favorites)
+    }
+
+    suspend fun allFavorites(): Response<List<Favorite>> {
+        val fav = breedDao.getAllFavorite()
+        return Response.success(fav)
     }
 }
