@@ -2,8 +2,6 @@ package com.dogbreedexplorer.app
 
 import android.app.Application
 import com.dogbreedexplorer.module.dbModule
-import com.dogbreedexplorer.module.favoriteModule
-import com.dogbreedexplorer.module.imageModule
 import com.dogbreedexplorer.module.networkModule
 import com.dogbreedexplorer.module.repositoryModule
 import com.dogbreedexplorer.module.viewModule
@@ -23,9 +21,6 @@ class App : Application() {
                     repositoryModule,
                     networkModule,
                     dbModule(this@App),
-                    imageModule,
-                    favoriteModule,
-
                 )
             )
         }

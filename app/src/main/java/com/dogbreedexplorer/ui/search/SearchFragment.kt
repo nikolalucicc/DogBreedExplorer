@@ -54,10 +54,15 @@ class SearchFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(context)
         recyclerview.isNestedScrollingEnabled()
 
-        adapter = BreedsAdapter(requireActivity(), mainViewModel) {breed ->
-            shareBreed(breed)
+        lifecycleScope.launch {
+            val favoriteList = mainViewModel.getFavoriteList()
+
+            adapter = BreedsAdapter(requireActivity(), mainViewModel,favoriteList) {breed ->
+                shareBreed(breed)
+            }
+
+            recyclerview.adapter = adapter
         }
-        recyclerview.adapter = adapter
     }
 
     private fun search(q: String) {

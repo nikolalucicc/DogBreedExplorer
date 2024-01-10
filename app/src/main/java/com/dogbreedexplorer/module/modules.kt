@@ -46,20 +46,3 @@ fun dbModule(context: Context) = module {
 
     single { get<AppDatabase>().breedDao() }
 }
-
-val imageModule = module {
-    single<Image> { Image(id = "", url = "") } // You can provide default values or fetch them dynamically
-}
-
-val favoriteModule = module {
-    single<Favorite> { (id: String, user_id: String, image_id: String, sub_id: String?, created_at: String) ->
-        Favorite(
-            id = id,
-            user_id = user_id,
-            image_id = image_id,
-            sub_id = sub_id,
-            created_at = created_at,
-            image = get() // Inject the Image instance
-        )
-    }
-}

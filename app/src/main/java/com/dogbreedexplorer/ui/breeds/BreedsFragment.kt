@@ -56,12 +56,16 @@ class BreedsFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(context)
         recyclerview.isNestedScrollingEnabled
 
-        adapter = BreedsAdapter(requireActivity(), viewModel) { breed ->
-            shareBreed(breed)
-        }
-        recyclerview.adapter = adapter
+        lifecycleScope.launch {
+            val favoriteList = viewModel.getFavoriteList()
 
-        initViewModel()
+            adapter = BreedsAdapter(requireActivity(), viewModel, favoriteList) { breed ->
+                shareBreed(breed)
+            }
+            recyclerview.adapter = adapter
+
+            initViewModel()
+        }
     }
 
     private fun initViewModel() {

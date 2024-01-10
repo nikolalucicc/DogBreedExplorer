@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
 import com.dogbreedexplorer.ui.breedDetails.BreedDetailsFragment
 import com.dogbreedexplorer.ui.model.Breed
+import com.dogbreedexplorer.utils.model.Favorite
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,6 +22,7 @@ import kotlinx.coroutines.launch
 class BreedsAdapter(
     val activity: Activity,
     private val viewModel: MainViewModel,
+    private var favoriteList: List<Favorite>,
     private var onShareClickListener: (Breed) -> Unit
 ) : RecyclerView.Adapter<BreedsAdapter.FeedViewHolder>() {
 
@@ -37,7 +39,7 @@ class BreedsAdapter(
     }
 
     override fun onBindViewHolder(holder: FeedViewHolder, @SuppressLint("RecyclerView") position: Int) {
-        holder.bind(breedList?.get(position)!!, activity)
+        holder.bind(breedList?.get(position)!!, activity, viewModel, favoriteList)
 
         holder.itemView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
@@ -86,7 +88,6 @@ class BreedsAdapter(
         val shareButton: ImageButton = itemView.findViewById(R.id.share)
         val favouriteButton: ImageButton = itemView.findViewById(R.id.favouriteBtn)
         val breedImage: ImageView = itemView.findViewById(R.id.ivBreedImage)
-        val numberOfVotes: TextView = itemView.findViewById(R.id.tvNumberOfVotes)
 
         var isVoted: Boolean = false
         fun updateFavouriteButtonColor() {
@@ -95,7 +96,7 @@ class BreedsAdapter(
             favouriteButton.setColorFilter(newColor)
         }
 
-        fun bind(data: Breed, activity: Activity) {
+        fun bind(data: Breed, activity: Activity, viewModel: MainViewModel, favoriteList: List<Favorite>) {
             name.text = data.name
             origin.text = data.origin
 
@@ -104,6 +105,7 @@ class BreedsAdapter(
             } else {
                 breedImage.visibility = View.INVISIBLE
             }
+            isVoted = favoriteList.any { it.image_id == data.reference_image_id }
             updateFavouriteButtonColor()
         }
     }

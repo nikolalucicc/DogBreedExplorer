@@ -1,7 +1,8 @@
 package com.dogbreedexplorer.network
 
 import com.dogbreedexplorer.ui.model.Breed
-import com.dogbreedexplorer.utils.model.Favourite
+import com.dogbreedexplorer.utils.model.Favorite
+import com.dogbreedexplorer.utils.model.dao.FavoriteDao
 import com.dogbreedexplorer.utils.model.Vote
 import retrofit2.Response
 import retrofit2.http.Body
@@ -32,5 +33,12 @@ interface Api {
         "x-api-key: live_l9zKc8SRMYb1JFqTlZl4pmXo6aJTN5ovmcD6Dc46xGhWwl2H0XZ8hko0UT1fc4jm"
     )
     @POST("v1/favourites")
-    suspend fun addToFavourite(@Body favourite: Favourite): Response<Any>
+    suspend fun addToFavourite(@Body favoriteDao: FavoriteDao): Response<Any>
+
+    @Headers(
+        "Content-Type: application/json",
+        "x-api-key: live_l9zKc8SRMYb1JFqTlZl4pmXo6aJTN5ovmcD6Dc46xGhWwl2H0XZ8hko0UT1fc4jm"
+    )
+    @GET("v1/favourites")
+    suspend fun getAllFavourites(): Response<List<Favorite>>
 }

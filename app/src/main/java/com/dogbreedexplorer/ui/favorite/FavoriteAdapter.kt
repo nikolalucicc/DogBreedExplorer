@@ -25,7 +25,6 @@ class FavoriteAdapter(
     private var favList: List<Favorite>? = null
     private var breedList: List<Breed>? = null
 
-    // Set both favList and breedList
     fun setFavBreeds(favList: List<Favorite>, breedList: List<Breed>) {
         this.favList = favList
         this.breedList = breedList
@@ -39,7 +38,6 @@ class FavoriteAdapter(
     override fun getItemCount(): Int = favList?.size ?: 0
 
     override fun onBindViewHolder(holder: FavViewHolder, position: Int) {
-        // Set both favList and breedList
         holder.bind(favList?.get(position)!!, breedList ?: emptyList())
 
         holder.itemView.setOnClickListener {
@@ -72,13 +70,6 @@ class FavoriteAdapter(
 
         var isVoted: Boolean = false
 
-        fun updateFavouriteButtonColor() {
-            val colorResId = if (isVoted) R.color.red else android.R.color.black
-            val newColor = ContextCompat.getColor(itemView.context, colorResId)
-            favouriteButton.setColorFilter(newColor)
-        }
-
-        // Updated function to accept breedList as a parameter
         fun bind(data: Favorite, breedList: List<Breed>) {
             val favImageId = data.image_id
             val matchingBreed = getBreedByImageId(favImageId, breedList)
@@ -98,7 +89,6 @@ class FavoriteAdapter(
             }
         }
 
-        // Updated function to accept breedList as a parameter
         private fun getBreedByImageId(imageId: String, breedList: List<Breed>): Breed? {
             for (breed in breedList) {
                 if (breed.reference_image_id == imageId) {

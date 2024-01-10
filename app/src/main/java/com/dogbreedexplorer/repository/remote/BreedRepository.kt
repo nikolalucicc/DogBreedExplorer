@@ -1,13 +1,11 @@
 package com.dogbreedexplorer.repository.remote
 
-import android.database.Observable
 import com.dogbreedexplorer.network.Api
 import com.dogbreedexplorer.ui.model.Breed
-import com.dogbreedexplorer.utils.model.Favourite
+import com.dogbreedexplorer.utils.model.Favorite
+import com.dogbreedexplorer.utils.model.dao.FavoriteDao
 import com.dogbreedexplorer.utils.model.Vote
-import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Path
 
 class BreedRepository(private val api: Api) {
     suspend fun getAllBreeds(): Response<List<Breed>> {
@@ -22,7 +20,10 @@ class BreedRepository(private val api: Api) {
     suspend fun sendVote(vote: Vote): Response<Any>{
         return api.sendVote(vote)
     }
-    suspend fun addToFavourite(favourite: Favourite): Response<Any>{
-        return api.addToFavourite(favourite)
+    suspend fun addToFavourite(favoriteDao: FavoriteDao): Response<Any>{
+        return api.addToFavourite(favoriteDao)
+    }
+    suspend fun getAllFavourites(): Response<List<Favorite>>{
+        return api.getAllFavourites()
     }
 }

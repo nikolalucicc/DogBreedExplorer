@@ -68,7 +68,6 @@ class BreedDetailsFragment : Fragment() {
         if (id != -1) {
             loadDetails(id)
         } else {
-            // Check if a deep link is provided
             val deepLinkBreedId = activity?.intent?.data?.lastPathSegment?.toIntOrNull()
             if (deepLinkBreedId != null) {
                 loadDetails(deepLinkBreedId)
