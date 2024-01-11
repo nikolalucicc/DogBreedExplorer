@@ -29,4 +29,10 @@ interface BreedDao {
 
     @Query("SELECT * FROM favorite")
     suspend fun getAllFavorite(): List<Favorite>
+
+    @Query("DELETE FROM favorite")
+    suspend fun clearTable()
+
+    @Query("DELETE FROM favorite WHERE id = :favourite_id")
+    suspend fun deleteFavorite(favourite_id: String)
 }

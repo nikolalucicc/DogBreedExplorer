@@ -5,6 +5,7 @@ import com.dogbreedexplorer.ui.model.Breed
 import com.dogbreedexplorer.utils.model.Favorite
 import com.dogbreedexplorer.utils.model.dao.FavoriteDao
 import com.dogbreedexplorer.utils.model.Vote
+import okhttp3.ResponseBody
 import retrofit2.Response
 
 class BreedRepository(private val api: Api) {
@@ -25,5 +26,8 @@ class BreedRepository(private val api: Api) {
     }
     suspend fun getAllFavourites(): Response<List<Favorite>>{
         return api.getAllFavourites()
+    }
+    suspend fun deleteFavorite(favourite_id: String): Response<ResponseBody>{
+        return api.deleteFavorite(favourite_id)
     }
 }

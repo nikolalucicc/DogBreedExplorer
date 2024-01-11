@@ -43,6 +43,7 @@ class FavouriteViewModel(
                         _data.value = FavoriteState.Success(favBreed, breedList)
                         val fav = response.body()
                         if(fav != null){
+//                            localRepo.clearTable()
                             localRepo.insertAllFavorite(fav)
                         }
                     } else {
@@ -75,6 +76,37 @@ class FavouriteViewModel(
                     _data.value = FavoriteState.Loading(false)
                 }
             }
+        }
+    }
+
+    fun deleteFavorite(favourite_id: String, context: Context){
+        if (networkUtil.isNetworkConnected(context)){
+            viewModelScope.launch {
+                try {
+                    _data.value = FavoriteState.Loading(true)
+                    val response = repo.deleteFavorite(favourite_id)
+
+                    if (response.isSuccessful) {
+                        removeFavoriteFromList(favourite_id)
+                        localRepo.deleteFavorite(favourite_id)
+                        getFavorites(context)
+                    } else {
+                        _data.value = FavoriteState.Error("Error deleting favorite: ${response.code()} - ${response.message()}")
+                    }
+                } catch (e: Exception) {
+                    _data.value = FavoriteState.Error("Exception while deleting favorite: ${e.message}")
+                } finally {
+                    _data.value = FavoriteState.Loading(false)
+                }
+            }
+        }
+    }
+
+    private fun removeFavoriteFromList(favourite_id: String) {
+        val currentList = _data.value
+        if (currentList is FavoriteState.Success) {
+            val updatedFavList = currentList.favBreed.filterNot { it.id == favourite_id }
+            _data.value = currentList.copy(favBreed = updatedFavList)
         }
     }
 }

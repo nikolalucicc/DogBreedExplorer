@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dogbreedexplorer.R
+import com.dogbreedexplorer.ui.favorite.FavouriteViewModel
 import com.dogbreedexplorer.ui.model.Breed
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout

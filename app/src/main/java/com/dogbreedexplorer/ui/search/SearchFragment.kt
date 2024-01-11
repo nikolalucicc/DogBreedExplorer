@@ -15,6 +15,7 @@ import com.dogbreedexplorer.R
 import com.dogbreedexplorer.ui.breeds.BreedState
 import com.dogbreedexplorer.ui.breeds.BreedsAdapter
 import com.dogbreedexplorer.ui.breeds.MainViewModel
+import com.dogbreedexplorer.ui.favorite.FavouriteViewModel
 import com.dogbreedexplorer.ui.model.Breed
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -57,7 +58,7 @@ class SearchFragment : Fragment() {
         lifecycleScope.launch {
             val favoriteList = mainViewModel.getFavoriteList()
 
-            adapter = BreedsAdapter(requireActivity(), mainViewModel,favoriteList) {breed ->
+            adapter = BreedsAdapter(requireActivity(), mainViewModel, favoriteList) {breed ->
                 shareBreed(breed)
             }
 

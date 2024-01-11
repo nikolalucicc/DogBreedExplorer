@@ -37,4 +37,13 @@ class LocalBreedRepository (private val breedDao: BreedDao) {
         val fav = breedDao.getAllFavorite()
         return Response.success(fav)
     }
+
+    suspend fun clearTable() {
+        breedDao.clearTable()
+    }
+
+    suspend fun deleteFavorite(favorite_id: String): Response<Unit> {
+        val favorite = breedDao.deleteFavorite(favorite_id)
+        return Response.success(favorite)
+    }
 }

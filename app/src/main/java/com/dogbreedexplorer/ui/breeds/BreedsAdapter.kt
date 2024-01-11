@@ -69,10 +69,14 @@ class BreedsAdapter(
         holder.favouriteButton.setOnClickListener {
             if (breed != null) {
                 CoroutineScope(Dispatchers.Main).launch {
-                    breed.reference_image_id?.let { it1 -> viewModel.addToFavourite(it1, null) }
+                    breed.reference_image_id?.let { it1 ->
+                        if (!holder.isVoted) {
+                            viewModel.addToFavourite(it1, null)
+                        }
+                        holder.isVoted = true
+                        holder.updateFavouriteButtonColor()
+                    }
                 }
-                holder.isVoted = !holder.isVoted
-                holder.updateFavouriteButtonColor()
             }
         }
     }

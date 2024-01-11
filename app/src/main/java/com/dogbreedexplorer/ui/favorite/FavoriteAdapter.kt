@@ -59,6 +59,14 @@ class FavoriteAdapter(
         holder.shareButton.setOnClickListener {
             breed?.let { onShareClickListener.invoke(it) }
         }
+
+        holder.favouriteButton.setOnClickListener{
+            val favourite_id = favList?.get(position)?.id
+            if(!favourite_id.isNullOrBlank()){
+                viewModel.deleteFavorite(favourite_id, it.context)
+                notifyDataSetChanged()
+            }
+        }
     }
 
     class FavViewHolder(item: View) : RecyclerView.ViewHolder(item) {
